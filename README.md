@@ -1,1 +1,1 @@
-# workshop-solitare-dom
+# workshop-solitaire-dom
