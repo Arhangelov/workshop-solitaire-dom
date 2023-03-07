@@ -1,4 +1,4 @@
-const faces = {
+export const faces = {
     Ace: 1,
     Two: 2,
     Three: 3,
@@ -14,21 +14,21 @@ const faces = {
     King: 13,
 };
 
-const suits = {
+export const suits = {
     Clubs: "clubs",
-    Diamond: "diamond",
+    Diamonds: "diamond",
     Hearts: "hearts",
     Spades: "spades",
 };
 
-const colors = {
+export const colors = {
     clubs: "black",
     diamond: "red",
     hearts: "red",
     spades: "black",
 };
 
-class Card {
+export class Card {
     /**@type {keyof suits} */
     suit = null;
     /**@type {keyof faces} */
@@ -49,7 +49,7 @@ class Card {
     }
 }
 
-class Deck {
+export class Deck {
     /**@type {Card[]} */
     cards = [];
 
@@ -116,7 +116,7 @@ class Deck {
     }
 }
 
-class Stock extends Deck {
+export class Stock extends Deck {
     canTake(index) {
         return false;
     }
@@ -129,7 +129,7 @@ class Stock extends Deck {
     }
 }
 
-class Waste extends Deck {
+export class Waste extends Deck {
     canTake(index) {
         return this.size > 0 && index == this.topIndex;
     }
@@ -142,7 +142,7 @@ class Waste extends Deck {
     }
 }
 
-class Foundation extends Deck {
+export class Foundation extends Deck {
     /**@type {keyof suits} */
     suit = null;
 
@@ -174,7 +174,7 @@ class Foundation extends Deck {
     }
 }
 
-class Pile extends Deck {
+export class Pile extends Deck {
     canTake(index) {
         return this.size > 0 && this.cards[index].faceUp;
     }
@@ -193,7 +193,7 @@ class Pile extends Deck {
         const bottomCard = cards[0];
 
         return (
-            (cards.face == faces.King && this.size == 0) ||
+            (bottomCard.face == faces.King && this.size == 0) ||
             (this.size > 0 &&
                 bottomCard.face + 1 == this.top.face &&
                 colors[bottomCard.suit] != colors[this.top.suit])
